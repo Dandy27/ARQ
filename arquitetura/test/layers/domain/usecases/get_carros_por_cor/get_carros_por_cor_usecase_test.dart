@@ -1,21 +1,36 @@
 import 'package:arquitetura/layers/domain/entities/carro_entity.dart';
+import 'package:arquitetura/layers/domain/repositories/get_carros_por_cor_repository.dart';
 import 'package:arquitetura/layers/domain/usecases/get_carros_por_cor/get_carro_por_cor_usecase_impl.dart';
 import 'package:arquitetura/layers/domain/usecases/get_carros_por_cor/get_carros_por_cor_usecase.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+class GetCarrosPorCorRepositoryIpml implements GetCarrosPorCorRepository {
+  @override
+  CarroEntity call(String cor) {
+    if (cor.contains('vermelho')) {
+      return CarroEntity(placa: 'qwe1234567', qtPortas: 4, valor: 5000);
+    }
+    return CarroEntity(placa: 'fdp326', qtPortas: 2, valor: 2000);
+  }
+}
+
 void main() {
   test('Deve receber uma instancia de carro quando passado qualquer cor ', () {
-    GetCarrosPorCorUsecase usecase = GetCarroPorCorUsecaseImpl();
+    GetCarrosPorCorUsecase usecase =
+        GetCarroPorCorUsecaseImpl(GetCarrosPorCorRepositoryIpml());
     var result = usecase('azul');
     expect(result, isInstanceOf<CarroEntity>());
-  }); 
-   test('Deve receber uma carro de duas portas qualquer cor exceto vermelho ', () {
-    GetCarrosPorCorUsecase usecase = GetCarroPorCorUsecaseImpl();
+  });
+  test('Deve receber uma carro de duas portas qualquer cor exceto vermelho ',
+      () {
+    GetCarrosPorCorUsecase usecase =
+        GetCarroPorCorUsecaseImpl(GetCarrosPorCorRepositoryIpml());
     var result = usecase('verde');
     expect(result.qtPortas, 2);
-  }); 
+  });
   test('Deve retornar um carro de qautro portas quando vermelho ', () {
-    GetCarrosPorCorUsecase usecase = GetCarroPorCorUsecaseImpl();
+    GetCarrosPorCorUsecase usecase =
+        GetCarroPorCorUsecaseImpl(GetCarrosPorCorRepositoryIpml());
     var result = usecase('vermelho');
     expect(result.qtPortas, 4);
   });
