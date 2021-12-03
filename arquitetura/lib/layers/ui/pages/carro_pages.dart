@@ -5,14 +5,12 @@ import 'package:arquitetura/layers/domain/usecases/get_carros_por_cor/get_carro_
 import 'package:arquitetura/layers/domain/usecases/salvar_carro_favorito_usecase/salvar_carro_favorito_usecase_impl.dart';
 import 'package:arquitetura/layers/presentation/controllers/carro_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 class CarroPages extends StatelessWidget {
   CarroPages({Key? key}) : super(key: key);
 
-  final controller = CarroController(
-      GetCarroPorCorUsecaseImpl(
-          GetCarrosPorCorRepositoryImpl(GetCarrosPorCorLocalDatasourceImpl())),
-      SalvarCarroFavoritoUsecaseImpl(SalvarCarroFavoritoRepositoryImpl()));
+  var controller = GetIt.I.get<CarroController>();
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +20,12 @@ class CarroPages extends StatelessWidget {
       ),
       body: Container(
         padding: const EdgeInsets.all(24),
-        child: Text(controller.carro.placa),
+        child: Column(
+          children: [
+            Text(controller.carro.placa),
+            const SizedBox(),
+          ],
+        ),
       ),
     );
   }

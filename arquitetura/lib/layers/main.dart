@@ -1,7 +1,9 @@
+import 'package:arquitetura/core/inject/inject.dart';
 import 'package:arquitetura/layers/ui/pages/carro_pages.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  Inject.init();
   runApp(const MyApp());
 }
 
@@ -10,12 +12,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Test Carros',
       home: CarroPages(),
     );
   }
 }
-
-
