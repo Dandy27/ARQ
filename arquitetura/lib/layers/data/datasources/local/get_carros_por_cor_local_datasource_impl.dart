@@ -1,5 +1,6 @@
 import 'package:arquitetura/layers/data/datasources/get_carros_por_cor_datasource.dart';
 import 'package:arquitetura/layers/data/dto/carro_dto.dart';
+import 'package:fpdart/fpdart.dart';
 
 class GetCarrosPorCorLocalDatasourceImpl implements GetCarrosPorDatasource {
   var jsonVermelho = {
@@ -14,10 +15,14 @@ class GetCarrosPorCorLocalDatasourceImpl implements GetCarrosPorDatasource {
     'valorFinal': 2000.00,
   };
   @override
-  CarroDto call(String cor) {
-    if (cor.contains('vermelho')) {
-      return CarroDto.fromMap(jsonVermelho);
+  Either<Exception, CarroDto> call(String cor) {
+    try {
+      if (cor.contains('vermelho')) {
+        return Right(CarroDto.fromMap(jsonVermelho));
+      }
+      return Right(CarroDto.fromMap(jsonAny));
+    } catch (e) {
+      return Left(Exception('Error in datasource'));
     }
-    return CarroDto.fromMap(jsonAny);
   }
 }

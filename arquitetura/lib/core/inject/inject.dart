@@ -3,7 +3,7 @@ import 'package:arquitetura/layers/data/datasources/local/get_carros_por_cor_loc
 import 'package:arquitetura/layers/data/repositories/get_carros_por_cor_repository_impl.dart';
 import 'package:arquitetura/layers/domain/repositories/get_carros_por_cor_repository.dart';
 import 'package:arquitetura/layers/domain/repositories/salvar_carro_favorito_repository.dart';
-import 'package:arquitetura/layers/domain/repositories/salvar_carro_favorito_repository_impl.dart';
+import 'package:arquitetura/layers/data/repositories/salvar_carro_favorito_repository_impl.dart';
 import 'package:arquitetura/layers/domain/usecases/get_carros_por_cor/get_carro_por_cor_usecase_impl.dart';
 import 'package:arquitetura/layers/domain/usecases/get_carros_por_cor/get_carros_por_cor_usecase.dart';
 import 'package:arquitetura/layers/domain/usecases/salvar_carro_favorito_usecase/salvar_carro_favorito_usecase.dart';
